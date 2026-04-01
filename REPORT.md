@@ -472,3 +472,33 @@ I checked the observability system for errors in the last hour. Here's what I fo
 - ✅ Agent responds to observability questions via WebSocket channel
 - ✅ Structured log entries with trace_id, span_id, service, level, event
 - ✅ Trace data with span descriptions and timing information
+
+## Task 4B — Proactive health check
+
+Cron job configured in `nanobot/workspace/cron/jobs.json`:
+
+```json
+{
+  "name": "Periodic Health Check",
+  "schedule": {
+    "kind": "cron",
+    "expr": "*/15 * * * *"
+  },
+  "enabled": true,
+  "lastStatus": "ok"
+}
+```
+
+Health check runs every 15 minutes and:
+1. Checks VictoriaLogs health
+2. Checks for recent errors
+3. Checks LMS backend health
+4. Posts summary report to webchat
+
+Logs show successful execution:
+```
+Tool call: mcp_observability_observability_logs_health({})
+Tool call: mcp_observability_observability_recent_errors({"limit": 20})
+Tool call: mcp_observability_observability_traces_health({})
+Tool call: mcp_lms_lms_health({})
+```
