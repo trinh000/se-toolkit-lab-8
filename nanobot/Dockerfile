@@ -19,6 +19,7 @@ COPY config.json /app/nanobot/config.json
 # Install dependencies and set permissions
 RUN uv venv /app/.venv && \
     uv pip install --python /app/.venv/bin/python nanobot-ai && \
+    uv pip install --python /app/.venv/bin/python /app/nanobot && \
     chown -R nonroot:nonroot /app && \
     chmod 777 /app/nanobot
 
@@ -26,6 +27,7 @@ ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONUNBUFFERED=1
 
 EXPOSE 18790
+EXPOSE 8765
 
 USER nonroot
 
