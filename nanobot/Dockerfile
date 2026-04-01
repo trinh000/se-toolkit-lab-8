@@ -5,20 +5,25 @@ WORKDIR /app
 # Install uv
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
 
-# Copy and install nanobot package
+# Copy nanobot files
 COPY pyproject.toml /app/nanobot/pyproject.toml
 COPY nanobot_webchat /app/nanobot/nanobot_webchat
-
-RUN uv venv /app/.venv && \
-    uv pip install --python /app/.venv/bin/python nanobot-ai
-
-# Copy workspace and entrypoint
 COPY workspace /app/nanobot/workspace
 COPY entrypoint.py /app/nanobot/entrypoint.py
+COPY config.json /app/nanobot/config.json
+
+# Create nonroot user and set permissions
+RUN groupadd --system --gid 999 nonroot && \
+    useradd --system --gid 999 --uid 999 --create-home nonroot && \
+    uv venv /app/.venv && \
+    uv pip install --python /app/.venv/bin/python nanobot-ai && \
+    chown -R nonroot:nonroot /app
 
 ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONUNBUFFERED=1
 
 EXPOSE 18790
+
+USER nonroot
 
 CMD ["python", "/app/nanobot/entrypoint.py"]
