@@ -1,0 +1,49 @@
+{
+  "agents": {
+    "defaults": {
+      "workspace": "./workspace",
+      "model": "coder-model",
+      "provider": "custom"
+    }
+  },
+  "providers": {
+    "custom": {
+      "apiKey": "6VFVz4TRvTyO7AFLqvt8BLPhAw8N5A9435R3h_KJPCmR2tOLCSUd9BazTpe9cGKFpXFCIu1sFt8hegiUeLSU0g",
+      "apiBase": "http://qwen-code-api:8080/v1"
+    }
+  },
+  "tools": {
+    "mcpServers": {
+      "lms": {
+        "command": "python",
+        "args": [
+          "-m",
+          "mcp_lms"
+        ],
+        "env": {
+          "NANOBOT_LMS_BACKEND_URL": "http://backend:8000",
+          "NANOBOT_LMS_API_KEY": "hi-hi"
+        }
+      },
+      "observability": {
+        "command": "python",
+        "args": [
+          "-c",
+          "import sys; sys.path.insert(0, '/app/mcp/mcp-observability/src'); from mcp_observability.__main__ import main; import asyncio; asyncio.run(main())"
+        ],
+        "env": {
+          "NANOBOT_VICTORIALOGS_URL": "http://victorialogs:9428",
+          "NANOBOT_VICTORIATRACES_URL": "http://victoriatraces:10428"
+        }
+      }
+    }
+  },
+  "channels": {
+    "webchat": {
+      "enabled": true,
+      "allowFrom": [
+        "*"
+      ]
+    }
+  }
+}
