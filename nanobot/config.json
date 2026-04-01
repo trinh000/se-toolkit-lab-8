@@ -8,7 +8,7 @@
   },
   "providers": {
     "custom": {
-      "apiKey": "6VFVz4TRvTyO7AFLqvt8BLPhAw8N5A9435R3h_KJPCmR2tOLCSUd9BazTpe9cGKFpXFCIu1sFt8hegiUeLSU0g",
+      "apiKey": "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",
       "apiBase": "http://qwen-code-api:8080/v1"
     }
   },
