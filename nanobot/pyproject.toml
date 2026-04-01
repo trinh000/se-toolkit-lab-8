@@ -1,0 +1,9 @@
+[project]
+name = "nanobot"
+version = "0.1.0"
+description = "Nanobot gateway configuration"
+requires-python = ">=3.12"
+dependencies = []
+
+[tool.uv]
+dev-dependencies = []
