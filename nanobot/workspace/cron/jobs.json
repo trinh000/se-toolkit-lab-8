@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "jobs": [
+    {
+      "id": "health-check",
+      "name": "Periodic Health Check",
+      "enabled": true,
+      "schedule": {
+        "kind": "cron",
+        "expr": "*/15 * * * *",
+        "tz": "UTC"
+      },
+      "payload": {
+        "kind": "agent_turn",
+        "message": "Perform a health check: 1) Check VictoriaLogs health using observability_logs_health tool, 2) Check for recent errors using observability_recent_errors tool, 3) Check backend health using lms_health tool. Post a summary report with your findings.",
+        "deliver": true,
+        "channel": "webchat",
+        "to": "*"
+      },
+      "state": {
+        "next_run_at_ms": null,
+        "last_run_at_ms": null,
+        "last_status": null,
+        "last_error": null,
+        "run_history": []
+      },
+      "created_at_ms": 1743523200000,
+      "updated_at_ms": 1743523200000,
+      "delete_after_run": false
+    }
+  ]
+}
