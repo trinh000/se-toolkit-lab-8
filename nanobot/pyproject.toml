@@ -1,9 +1,20 @@
 [project]
-name = "nanobot"
-version = "0.1.0"
-description = "Nanobot gateway configuration"
-requires-python = ">=3.12"
-dependencies = []
+name = "lms-nanobot"
+version = "1.0.0"
+description = "Nanobot AI assistant for the LMS with webchat and LMS MCP tools"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "nanobot-ai>=0.1.4",
+    "lms-mcp",
+]
 
-[tool.uv]
-dev-dependencies = []
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["nanobot_webchat*"]
+
+[project.entry-points."nanobot.channels"]
+webchat = "nanobot_webchat:WebChatChannel"
