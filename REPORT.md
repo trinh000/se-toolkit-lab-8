@@ -502,3 +502,17 @@ Tool call: mcp_observability_observability_recent_errors({"limit": 20})
 Tool call: mcp_observability_observability_traces_health({})
 Tool call: mcp_lms_lms_health({})
 ```
+
+## Task 4B — Proactive health check (VERIFIED)
+
+Created via Flutter chat WebSocket:
+
+Request: Create a health check that runs every 15 minutes...
+
+Agent Response: I will create a scheduled health check for you.
+
+Verification - List scheduled jobs:
+- Periodic Health Check (health-check): Every 15 min
+- Backend Health Check (b8af6c1d): Every 15 min
+
+Both jobs confirmed in nanobot/workspace/cron/jobs.json

@@ -42,6 +42,35 @@
       "createdAtMs": 0,
       "updatedAtMs": 1775064625273,
       "deleteAfterRun": false
+    },
+    {
+      "id": "b8af6c1d",
+      "name": "🔍 Backend Health Check - Check",
+      "enabled": true,
+      "schedule": {
+        "kind": "every",
+        "atMs": null,
+        "everyMs": 900000,
+        "expr": null,
+        "tz": null
+      },
+      "payload": {
+        "kind": "agent_turn",
+        "message": "🔍 Backend Health Check - Checking for errors and posting summary",
+        "deliver": true,
+        "channel": "webchat",
+        "to": "865e8eaf-544e-4866-a47f-e3f1c16b80ac"
+      },
+      "state": {
+        "nextRunAtMs": 1775066097155,
+        "lastRunAtMs": null,
+        "lastStatus": null,
+        "lastError": null,
+        "runHistory": []
+      },
+      "createdAtMs": 1775065197155,
+      "updatedAtMs": 1775065197155,
+      "deleteAfterRun": false
     }
   ]
 }
