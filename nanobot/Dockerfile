@@ -19,11 +19,12 @@ COPY config.json /app/nanobot/config.json
 # Install dependencies and set permissions
 RUN uv venv /app/.venv && \
     uv pip install --python /app/.venv/bin/python nanobot-ai && \
-    uv pip install --python /app/.venv/bin/python /app/nanobot && \
     chown -R nonroot:nonroot /app && \
     chmod 777 /app/nanobot
 
+# Add nanobot to PYTHONPATH so nanobot_webchat can be found
 ENV PATH="/app/.venv/bin:$PATH"
+ENV PYTHONPATH="/app/nanobot:$PYTHONPATH"
 ENV PYTHONUNBUFFERED=1
 
 EXPOSE 18790
